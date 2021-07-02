@@ -6,6 +6,8 @@ services:
     command: python3 script.py
     volumes:
       - .:/code
+    depends_on: 
+      - githooks
 
   # The "githook" service creates symlinks of any file in the .githooks directory within .git/hooks.
   # We need to do this because everything within the .git directory (include the hooks directory)
