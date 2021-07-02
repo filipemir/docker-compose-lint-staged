@@ -1,0 +1,10 @@
+FROM nikolaik/python-nodejs:python3.9-nodejs15
+
+RUN npm install -g lint-staged
+RUN pip install black pylint
+
+RUN mkdir /precommit && \
+      cd /precommit && \
+      git init .
+
+WORKDIR /precommit
