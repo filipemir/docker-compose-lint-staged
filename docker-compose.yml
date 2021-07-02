@@ -6,8 +6,8 @@ services:
     command: python3 script.py
     volumes:
       - .:/code
-    depends_on: 
-      - githooks
+    # depends_on: 
+    #   - githooks
 
   # The "githook" service creates symlinks of any file in the .githooks directory within .git/hooks.
   # We need to do this because everything within the .git directory (include the hooks directory)
@@ -18,19 +18,21 @@ services:
   # See here for more info: https://github.com/sourceboat/docker-compose-githooks
   # TODO: Incorporate this script into Dockerfile.precommit so that we don't have to have a
   # separate service just for this
-  githooks:
-    image: sourceboat/docker-compose-githooks:1.0.0
-    volumes:
-      - ./.git:/tmp/.git
-      - ./.githooks:/tmp/.githooks
+  # githooks:
+  #   image:  
+  #   volumes:
+  #     - ./.git:/tmp/.git
+  #     - ./.githooks:/tmp/.githooks
 
   # The "precommit" service has the runtime for our pre-commit hook.
   precommit:
     build:
       context: .
       dockerfile: Dockerfile.precommit
-    volumes:
+    volumes:  
       - .:/precommit
+      - ./.git:/tmp/.git
+      - ./.githooks:/tmp/.githooks
       - ~/.gitconfig:/root/.gitconfig
     tty: true
     stdin_open: true
