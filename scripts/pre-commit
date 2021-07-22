@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 echo "Running pre-commit hook:"
 
 IMAGE_NAME=precommit_precommit

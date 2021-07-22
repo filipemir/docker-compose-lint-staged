@@ -6,12 +6,11 @@ RUN pip install black pylint
 ARG RELEASE_VERSION=0.0.3
 ARG RELEASE_TARBALL=${RELEASE_VERSION}.tar.gz
 ARG RELEASE_URL=https://github.com/filipemir/docker-compose-lint-staged/archive/refs/tags/${RELEASE_TARBALL}
-ARG RELEASE_DIR=/release
+ARG RELEASE_DIR=/tmp/release
 
 RUN wget $RELEASE_URL
 RUN mkdir ${RELEASE_DIR} 
 RUN tar -zxvf ${RELEASE_TARBALL} -C ${RELEASE_DIR} --strip-components 1
-# RUN cd ${RELEASE_DIR}/scripts && ls | xargs chmod +x 
 
 RUN mkdir /lint-staged && \
       cd /lint-staged && \
@@ -22,5 +21,4 @@ WORKDIR /lint-staged
 RUN ls  -la /lint-staged
 RUN ls  -la ${RELEASE_DIR}/scripts/
 
-# ENTRYPOINT "/release/scripts/install-pre-commit-hook.sh"
-ENTRYPOINT "/lint-staged/scripts/install-pre-commit-hook.sh"
+ENTRYPOINT "${RELEASE_DIR}/scripts/install-pre-commit-hook.sh"

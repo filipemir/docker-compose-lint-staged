@@ -1,15 +1,7 @@
 #!/bin/sh
-echo "Installing pre-commit hook:"
+echo "Installing git hooks:"
 
-# Absolute path to this script, e.g. /home/user/bin/foo.sh
-SCRIPT=$(readlink -f "$0")
-echo $SCRIPT
+cp /tmp/release/scripts/pre-commit /tmp/.git/hooks/pre-commit
 
-# cd /tmp/.githooks 
-# ls -la
-# ls | xargs chmod +x 
-cp /release/scripts/pre-commit-hook.sh /tmp/.git/hooks/pre-commit
-# cd /tmp/.git/hooks
-# find /tmp/.githooks -type f -exec ln -sf {} /tmp/.git/hooks/ \;
-echo 'githooks installed'
+echo 'Git hooks successfully installed'
 
