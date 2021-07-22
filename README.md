@@ -1,0 +1,5 @@
+- [ ] Create base node image
+- [ ] Create python image from it
+- [ ] Publish both
+- [ ] Create example repos
+- [ ] Auto-create release and images
