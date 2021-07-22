@@ -11,5 +11,5 @@ echo $SCRIPT
 cp /release/scripts/pre-commit-hook.sh /tmp/.git/hooks/pre-commit
 # cd /tmp/.git/hooks
 # find /tmp/.githooks -type f -exec ln -sf {} /tmp/.git/hooks/ \;
-echo 'githooks installed'"
+echo 'githooks installed'
 

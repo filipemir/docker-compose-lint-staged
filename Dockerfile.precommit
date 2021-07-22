@@ -3,7 +3,7 @@ FROM nikolaik/python-nodejs:python3.9-nodejs15
 RUN npm install -g lint-staged
 RUN pip install black pylint
 
-ARG RELEASE_VERSION=0.0.1
+ARG RELEASE_VERSION=0.0.3
 ARG RELEASE_TARBALL=${RELEASE_VERSION}.tar.gz
 ARG RELEASE_URL=https://github.com/filipemir/docker-compose-lint-staged/archive/refs/tags/${RELEASE_TARBALL}
 ARG RELEASE_DIR=/release
@@ -22,4 +22,5 @@ WORKDIR /lint-staged
 RUN ls  -la /lint-staged
 RUN ls  -la ${RELEASE_DIR}/scripts/
 
-ENTRYPOINT "/release/scripts/install-pre-commit-hook.sh"
+# ENTRYPOINT "/release/scripts/install-pre-commit-hook.sh"
+ENTRYPOINT "/lint-staged/scripts/install-pre-commit-hook.sh"
