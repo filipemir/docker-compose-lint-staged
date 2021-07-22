@@ -18,6 +18,4 @@ RUN wget $RELEASE_URL
 RUN mkdir ${RELEASE_DIR} && tar -zxvf ${RELEASE_TARBALL} -C ${RELEASE_DIR} --strip-components 1
 RUN ls -la ${RELEASE_DIR}
 
-
-
-# CMD ["docker-compose-lint-staged-0.0.0/install-hook.sh"]
+CMD ["docker-compose-lint-staged-0.0.0/install-hook.sh"]

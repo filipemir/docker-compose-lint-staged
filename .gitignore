@@ -18,3 +18,4 @@ secret.env
 coverage
 htmlcov
 db.json
+node_modules
