@@ -1,9 +1,0 @@
-*
-!bazaar
-!poetry.lock
-!pyproject.toml
-!*.py
-!build_hm.sh
-!db.json
-!locustfiles
-!templates

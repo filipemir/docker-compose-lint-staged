@@ -1,7 +1,7 @@
 #!/bin/sh
 echo "Running pre-commit hook:"
 
-IMAGE_NAME=precommit_precommit
+IMAGE_NAME=precommit
 
 docker images $IMAGE_NAME | grep $IMAGE_NAME &> /dev/null
 IMAGE_EXISTS=$?
@@ -9,7 +9,7 @@ IMAGE_EXISTS=$?
 if [[ IMAGE_EXISTS -ne 0 ]]; then
   RED='\033[0;31m'
   echo -e "${RED}Aborting commit:"
-  echo 'No Docker image found for running pre-commit hooks. Try running "docker-compose build" before retrying the commit.'
+  echo 'No Docker image found for running pre-commit hooks. Try running "docker-compose build && docker-compose up" before retrying the commit.'
   exit 1
 fi
 
