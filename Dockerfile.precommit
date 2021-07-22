@@ -3,10 +3,21 @@ FROM nikolaik/python-nodejs:python3.9-nodejs15
 RUN npm install -g lint-staged
 RUN pip install black pylint
 
-RUN mkdir /precommit && \
-      cd /precommit && \
+RUN mkdir /lint-staged && \
+      cd /lint-staged && \
       git init .
 
-WORKDIR /precommit
+WORKDIR /lint-staged
 
-CMD sh -c "cd /tmp/.githooks && ls | xargs chmod +x && cd /tmp/.git/hooks && find ../../.githooks -type f -exec ln -sf {} /tmp/.git/hooks/ \; && echo 'githooks installed'"
+ARG RELEASE_VERSION=0.0.0
+ARG RELEASE_TARBALL=${RELEASE_VERSION}.tar.gz
+ARG RELEASE_URL=https://github.com/filipemir/docker-compose-lint-staged/archive/refs/tags/${RELEASE_TARBALL}
+ARG RELEASE_DIR=release
+
+RUN wget $RELEASE_URL
+RUN mkdir ${RELEASE_DIR} && tar -zxvf ${RELEASE_TARBALL} -C ${RELEASE_DIR} --strip-components 1
+RUN ls -la ${RELEASE_DIR}
+
+
+
+# CMD ["docker-compose-lint-staged-0.0.0/install-hook.sh"]

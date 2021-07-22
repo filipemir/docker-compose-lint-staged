@@ -30,7 +30,7 @@ services:
       context: .
       dockerfile: Dockerfile.precommit
     volumes:  
-      - .:/precommit
+      - .:/lint-staged
       - ./.git:/tmp/.git
       - ./.githooks:/tmp/.githooks
       - ~/.gitconfig:/root/.gitconfig
